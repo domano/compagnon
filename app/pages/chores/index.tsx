@@ -35,7 +35,7 @@ function ChoreTile(c: Chore) {
 }
 
 export default function Chores() {
-    const chores = useSelector((state: RootState) => state.chores.chores)
+    const chores = useSelector((state: RootState) => state.choresState.chores)
     const dispatch = useDispatch<Dispatch>()
 
 
@@ -44,7 +44,10 @@ export default function Chores() {
         {
             chores.map((chore) => <ChoreTile {...chore} />)
         }
-        <button onClick={() => dispatch.chores.addChore(demoChore)}>Add</button>
+        <button onClick={() => {
+            console.log(dispatch)
+            dispatch.choresState.addChore(demoChore)
+        }}>Add</button>
 
     </dl>
 </>
