@@ -1,9 +1,12 @@
 import {Chore, demoChore} from "../../shared/model/chores";
 import { useSelector, useDispatch } from 'react-redux'
 import {Dispatch, RootState} from "../_app";
+import Tile from "../../components/atoms/Tile";
+import AddButton from "../../components/atoms/Add";
+import ChoreCreationOverlay from "../../components/organisms/ChoreCreationOverlay";
 
 function ChoreTile(c: Chore) {
-    return <div className="rounded-lg m-1 bg-white shadow">
+    return <Tile>
         <div className="px-4 py-5 sm:p-6">
             <dt className="text-base font-normal text-gray-900">
                 {c.title}
@@ -31,7 +34,7 @@ function ChoreTile(c: Chore) {
                 </div>
             </dd>
         </div>
-    </div>;
+    </Tile>;
 }
 
 export default function Chores() {
@@ -44,11 +47,8 @@ export default function Chores() {
         {
             chores.map((chore) => <ChoreTile {...chore} />)
         }
-        <button onClick={() => {
-            console.log(dispatch)
-            dispatch.choresState.addChore(demoChore)
-        }}>Add</button>
-
+        <AddButton onClick={() => dispatch.choresState.toggleCreator()}/>
+        <ChoreCreationOverlay/>
     </dl>
 </>
 

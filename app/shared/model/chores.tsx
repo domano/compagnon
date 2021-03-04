@@ -17,17 +17,26 @@ export type Chore = {
 
 type ChoresState = {
     chores: Chore[]
+    showChoreCreator: boolean
 }
+
 
 export const chores = {
     state: {
         chores: [demoChore],
+        showChoreCreator: false,
     } as ChoresState,
     reducers: {
         addChore (state: ChoresState, c: Chore) {
             return {
                 ...state,
                 chores: [...state.chores, c]
+            }
+        },
+        toggleCreator(state: ChoresState) {
+            return {
+                ...state,
+                showChoreCreator: !state.showChoreCreator
             }
         }
     },
